@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import React from 'react';
+import './styles/App.sass';
+import { hot } from 'react-hot-loader/root';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { MainPage } from './pages/MainPage';
+import { Header } from './common/Header';
+import navi from './assets/navi.svg'
+import { UserPosts } from './pages/UserPosts';
+import { Post } from './pages/Post';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='page'>
+      <Header />
+      <div className='content'>
+        <img src={navi} className='navi' alt='navi' />
+        <div className='search'>http://daftcode.pl</div>
+        <Router>
+          <Switch>
+            <Route exact path='/' component={MainPage} />
+            <Route exact path='/posts/:id' component={UserPosts} />
+            <Route exact path='/post/:userId/:id' component={Post} />
+          </Switch>
+        </Router>
+      </div>
     </div>
   );
-}
+};
 
-export default App;
+export default hot(App);

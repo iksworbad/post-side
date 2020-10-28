@@ -3,10 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createServices } from './services';
+import { ServiceContext } from './useServices';
+
+const services = createServices();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ServiceContext.Provider value={services}>
+      <App />
+    </ServiceContext.Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
